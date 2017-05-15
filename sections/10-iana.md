@@ -1,0 +1,5 @@
+#  IANA Considerations
+
+Extension vPath specifications produced as Standards Track RFCs **MUST**
+not modify vPath functionality defined in this document, but are allowed
+to carry additional extensions to vPath.
