@@ -33,20 +33,22 @@ TODO.
 TODO. Both vCard [@RFC6350] and iCalendar [@RFC5545] use UTF-8
 [@RFC3629].
 
-% From RFC 2854 Section 6
-%
-% The use of an explicit charset parameter is strongly recommended.
-% While [MIME] specifies "The default character set, which must be
-% assumed in the absence of a charset parameter, is US-ASCII."  [HTTP]
-% Section 3.7.1, defines that "media subtypes of the 'text' type are
-% defined to have a default charset value of 'ISO-8859-1'".  Section
-% 19.3 of [HTTP] gives additional guidelines.  Using an explicit
-% charset parameter will help avoid confusion.
-%
-% Using an explicit charset parameter also takes into account that the
-% overwhelming majority of deployed browsers are set to use something
-% else than 'ISO-8859-1' as the default; the actual default is either a
-% corporate character encoding or character encodings widely deployed
-% in a certain national or regional community. For further
-% considerations, please also see Section 5.2 of [HTML40].
-%
+
+<!--
+From RFC 2854 Section 6
+
+The use of an explicit charset parameter is strongly recommended.
+While [MIME] specifies "The default character set, which must be
+assumed in the absence of a charset parameter, is US-ASCII."  [HTTP]
+Section 3.7.1, defines that "media subtypes of the 'text' type are
+defined to have a default charset value of 'ISO-8859-1'".  Section
+19.3 of [HTTP] gives additional guidelines.  Using an explicit
+charset parameter will help avoid confusion.
+
+Using an explicit charset parameter also takes into account that the
+overwhelming majority of deployed browsers are set to use something
+else than 'ISO-8859-1' as the default; the actual default is either a
+corporate character encoding or character encodings widely deployed
+in a certain national or regional community. For further
+considerations, please also see Section 5.2 of [HTML40].
+-->

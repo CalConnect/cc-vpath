@@ -31,17 +31,17 @@ vpath = path-absolute / path-relative
 path-absolute = root-delim comp-segment [prop-path]
   ; a path relative to the root of the vObject
 
-path-relative = \*( comp-segment ) [prop-path] / prop-path
+path-relative = *( comp-segment ) [prop-path] / prop-path
   ; a path relative to the position of the "current" component
   ; (empty comp-segment refers to the current component)
 
-prop-path = 1\*( prop-segment ) [ \*( param-segment ) ]
+prop-path = 1*( prop-segment ) [ *( param-segment ) ]
 
-comp-segment = comp-delim comp-name \*( prop-delim comp-match )
+comp-segment = comp-delim comp-name *( prop-delim prop-match )
   ; a path segment with optional match criteria to select a specific
   ; component with the given name (or object class)
 
-comp-match = prop-presence-match / prop-name prop-value-match
+prop-match = prop-presence-match / prop-name prop-value-match
 
 prop-presence-match = [ operator-not-present ] prop-name
   ; matches if the property with the given name is present
@@ -53,7 +53,7 @@ prop-value-match = operator-equality value-escaped
 
 
 prop-segment = prop-delim prop-name [prop-value-match]
-                 \*( param-delim param-match )
+                 *( param-delim param-match )
 
 param-match = param-presence-match / param-name param-value-match
   ; matches a specific property parameter
@@ -69,7 +69,7 @@ param-value-match = operator-equality value-escaped
 param-segment = param-delim param-name
 
 
-value-escaped = \*( unreserved / pct-encoded )
+value-escaped = *( unreserved / pct-encoded )
   ; the escaped value containing only unreserved or percent-encoded
   ; chars
 

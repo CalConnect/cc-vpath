@@ -45,8 +45,8 @@ segment is added to the parameter segment at the end of the path.
 
 ## Match Syntax
 
-Values in match items **MUST** use URL-style percent (%) encoding of the
-characters "/", "#", ";", "=", and "]".  This allows a path to be
+Values in match items **MUST** use URL-style percent ("%") encoding of
+the characters "/", "#", ";", "=", and "]".  This allows a path to be
 quickly split into segments by breaking apart the text on the relevant
 delimiter characters.
 

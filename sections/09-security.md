@@ -23,7 +23,7 @@ Implementers and users of vObject fragment identifiers **SHOULD**
 take into account of security considerations provided in [@!RFC3986
 Section 7] and [@!RFC3987 Section 8].
 
-% Adapted from RFC 5147
+<!-- Adapted from RFC 5147 -->
 
 Please note that fragment identifiers are not used when resolving a URI
 to retrieve the representation of a resource.

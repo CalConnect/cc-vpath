@@ -59,7 +59,7 @@
     <author initials="K." surname="Murchison" fullname="Ken Murchison">
       <organization>Carnegie Mellon University</organization>
     </author>
-    <date month='10' day='28' year='2016'/>
+    <date day='28' month='October' year='2016'/>
   </front>
 </reference>
 

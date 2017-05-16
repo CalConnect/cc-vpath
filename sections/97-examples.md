@@ -199,4 +199,17 @@ segment, one parameter segment, and one value segment.
   object.
 
 
+## Fragment Usage Examples
 
+Plural results:
+
+* `https://example.com/cyrus.vcf#//VCARD&TEL`
+* `https://example.com/cyrus/vcard#//VCARD&TEL`
+* `https://example.com/cyrus/vcard#//VCARD/PROFILE(1)&TEL;TYPE`
+
+Singular results:
+
+* `https://example.com/cyrus.vcf#//VCARD&TEL(1)`
+  * => `"TEL;TYPE=home,work:+123456789"`
+* `https://example.com/cyrus/vcard#//VCARD/PROFILE(1)&TEL(1);TYPE`
+  * => `"home,work"`

@@ -96,16 +96,16 @@ Table of Contents
      4.2.  Character Set . . . . . . . . . . . . . . . . . . . . . .   5
    5.  Path Types  . . . . . . . . . . . . . . . . . . . . . . . . .   5
      5.1.  Absolute Path . . . . . . . . . . . . . . . . . . . . . .   5
-     5.2.  Relative Path . . . . . . . . . . . . . . . . . . . . . .   6
+     5.2.  Relative Path . . . . . . . . . . . . . . . . . . . . . .   5
    6.  Targeting and Matching  . . . . . . . . . . . . . . . . . . .   6
      6.1.  Components  . . . . . . . . . . . . . . . . . . . . . . .   6
      6.2.  Properties  . . . . . . . . . . . . . . . . . . . . . . .   6
-     6.3.  Property Parameters . . . . . . . . . . . . . . . . . . .   7
+     6.3.  Property Parameters . . . . . . . . . . . . . . . . . . .   6
      6.4.  Match Syntax  . . . . . . . . . . . . . . . . . . . . . .   7
    7.  ABNF Representation . . . . . . . . . . . . . . . . . . . . .   7
    8.  Fragment Identifier . . . . . . . . . . . . . . . . . . . . .   9
      8.1.  Character Set . . . . . . . . . . . . . . . . . . . . . .   9
-   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  10
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . .   9
 
 
 
@@ -115,19 +115,19 @@ Internet-Draft              calconnect-vpath                    May 2017
 
 
    10. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  10
-   11. Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .  11
-     11.1.  From Marten: Updated examples (old vs. new)  . . . . . .  11
-     11.2.  Referring To Components  . . . . . . . . . . . . . . . .  12
-     11.3.  Referring To Properties  . . . . . . . . . . . . . . . .  13
-     11.4.  Referring To Property Parameters . . . . . . . . . . . .  14
-     11.5.  Referring To Property Values . . . . . . . . . . . . . .  14
-     11.6.  Referring To Property Parameter Values . . . . . . . . .  14
-   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  15
-     12.1.  Normative References . . . . . . . . . . . . . . . . . .  15
-     12.2.  Informative References . . . . . . . . . . . . . . . . .  16
-     12.3.  URIs . . . . . . . . . . . . . . . . . . . . . . . . . .  16
+   11. Examples  . . . . . . . . . . . . . . . . . . . . . . . . . .  10
+     11.1.  From Marten: Updated examples (old vs. new)  . . . . . .  10
+     11.2.  Referring To Components  . . . . . . . . . . . . . . . .  11
+     11.3.  Referring To Properties  . . . . . . . . . . . . . . . .  12
+     11.4.  Referring To Property Parameters . . . . . . . . . . . .  13
+     11.5.  Referring To Property Values . . . . . . . . . . . . . .  13
+     11.6.  Referring To Property Parameter Values . . . . . . . . .  13
+     11.7.  Fragment Usage Examples  . . . . . . . . . . . . . . . .  14
+   12. References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
+     12.1.  Normative References . . . . . . . . . . . . . . . . . .  14
+     12.2.  Informative References . . . . . . . . . . . . . . . . .  15
    Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  16
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  17
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  16
 
 1.  Introduction
 
@@ -235,21 +235,6 @@ Internet-Draft              calconnect-vpath                    May 2017
    TODO.  Both vCard [RFC6350] and iCalendar [RFC5545] use UTF-8
    [RFC3629].
 
-   % From RFC 2854 Section 6 % % The use of an explicit charset
-   parameter is strongly recommended.  % While [MIME] specifies "The
-   default character set, which must be % assumed in the absence of a
-   charset parameter, is US-ASCII."  [HTTP] % Section 3.7.1, defines
-   that "media subtypes of the 'text' type are % defined to have a
-   default charset value of 'ISO-8859-1'".  Section % 19.3 of [HTTP]
-   gives additional guidelines.  Using an explicit % charset parameter
-   will help avoid confusion.  % % Using an explicit charset parameter
-   also takes into account that the % overwhelming majority of deployed
-   browsers are set to use something % else than 'ISO-8859-1' as the
-   default; the actual default is either a % corporate character
-   encoding or character encodings widely deployed % in a certain
-   national or regional community.  For further % considerations, please
-   also see Section 5.2 of [HTML40].  %
-
 5.  Path Types
 
    A vObject path can either be an "absolute" or "relative" path.
@@ -273,15 +258,6 @@ Internet-Draft              calconnect-vpath                    May 2017
    o  "//VCARD#TEL": refers to the "TEL" properties of the top-level
       "VCARD" components
 
-
-
-
-
-Daboo, et al.           Expires November 16, 2017               [Page 5]
-
-Internet-Draft              calconnect-vpath                    May 2017
-
-
 5.2.  Relative Path
 
    o  Does not start with "/".
@@ -297,6 +273,14 @@ Internet-Draft              calconnect-vpath                    May 2017
 
    o  "/VEVENT#UID": refers to the "UID" properties of the current level
       "VEVENT" components.
+
+
+
+
+Daboo, et al.           Expires November 16, 2017               [Page 5]
+
+Internet-Draft              calconnect-vpath                    May 2017
+
 
    Relative paths are unable to refer to an element that is outside of
    the current component.  The only way to do so is through an absolute
@@ -330,14 +314,6 @@ Internet-Draft              calconnect-vpath                    May 2017
    To target a property inside of a component, a property segment is
    added to the path.
 
-
-
-
-Daboo, et al.           Expires November 16, 2017               [Page 6]
-
-Internet-Draft              calconnect-vpath                    May 2017
-
-
    A property segment can include an optional match item.  When present,
    this allows targeting of properties:
 
@@ -353,6 +329,15 @@ Internet-Draft              calconnect-vpath                    May 2017
    To target a property parameter, a parameter segment is added to the
    property segment at the end of the path.
 
+
+
+
+
+Daboo, et al.           Expires November 16, 2017               [Page 6]
+
+Internet-Draft              calconnect-vpath                    May 2017
+
+
    To target a single value in a multi-valued property, a value segment
    is added to the property segment at the end of the path.
 
@@ -362,8 +347,8 @@ Internet-Draft              calconnect-vpath                    May 2017
 
 6.4.  Match Syntax
 
-   Values in match items MUST use URL-style percent (%) encoding of the
-   characters "/", "#", ";", "=", and "]".  This allows a path to be
+   Values in match items MUST use URL-style percent ("%") encoding of
+   the characters "/", "#", ";", "=", and "]".  This allows a path to be
    quickly split into segments by breaking apart the text on the
    relevant delimiter characters.
 
@@ -386,14 +371,6 @@ Internet-Draft              calconnect-vpath                    May 2017
    prop-delim  = "&"
    param-delim = ";"
 
-
-
-
-Daboo, et al.           Expires November 16, 2017               [Page 7]
-
-Internet-Draft              calconnect-vpath                    May 2017
-
-
    comp-name   = text
    prop-name   = text
    param-name  = text
@@ -409,17 +386,25 @@ Internet-Draft              calconnect-vpath                    May 2017
    path-absolute = root-delim comp-segment [prop-path]
      ; a path relative to the root of the vObject
 
-   path-relative = \*( comp-segment ) [prop-path] / prop-path
+
+
+
+Daboo, et al.           Expires November 16, 2017               [Page 7]
+
+Internet-Draft              calconnect-vpath                    May 2017
+
+
+   path-relative = *( comp-segment ) [prop-path] / prop-path
      ; a path relative to the position of the "current" component
      ; (empty comp-segment refers to the current component)
 
-   prop-path = 1\*( prop-segment ) [ \*( param-segment ) ]
+   prop-path = 1*( prop-segment ) [ *( param-segment ) ]
 
-   comp-segment = comp-delim comp-name \*( prop-delim comp-match )
+   comp-segment = comp-delim comp-name *( prop-delim prop-match )
      ; a path segment with optional match criteria to select a specific
      ; component with the given name (or object class)
 
-   comp-match = prop-presence-match / prop-name prop-value-match
+   prop-match = prop-presence-match / prop-name prop-value-match
 
    prop-presence-match = [ operator-not-present ] prop-name
      ; matches if the property with the given name is present
@@ -431,7 +416,7 @@ Internet-Draft              calconnect-vpath                    May 2017
 
 
    prop-segment = prop-delim prop-name [prop-value-match]
-                    \*( param-delim param-match )
+                    *( param-delim param-match )
 
    param-match = param-presence-match / param-name param-value-match
      ; matches a specific property parameter
@@ -444,16 +429,10 @@ Internet-Draft              calconnect-vpath                    May 2017
      ; matches a specific property parameter and its value
 
 
-
-Daboo, et al.           Expires November 16, 2017               [Page 8]
-
-Internet-Draft              calconnect-vpath                    May 2017
-
-
    param-segment = param-delim param-name
 
 
-   value-escaped = \*( unreserved / pct-encoded )
+   value-escaped = *( unreserved / pct-encoded )
      ; the escaped value containing only unreserved or percent-encoded
      ; chars
 
@@ -462,6 +441,14 @@ Internet-Draft              calconnect-vpath                    May 2017
 
    unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
      ; taken from RFC 3986
+
+
+
+
+Daboo, et al.           Expires November 16, 2017               [Page 8]
+
+Internet-Draft              calconnect-vpath                    May 2017
+
 
 8.  Fragment Identifier
 
@@ -480,40 +467,6 @@ Internet-Draft              calconnect-vpath                    May 2017
 
    TODO.  Fragments are in US-ASCII charset.  UTF-8 content (such as for
    matching) should be encoded in the method of [RFC3986])
-
-   % RFC 3986 Section 2.5 % % For most systems, an unreserved character
-   appearing within a URI % component is interpreted as representing the
-   data octet corresponding % to that character's encoding in US-ASCII.
-   Consumers of URIs assume % that the letter "X" corresponds to the
-   octet "01011000", and even % when that assumption is incorrect, there
-   is no harm in making it.  A % system that internally provides
-   identifiers in the form of a % different character encoding, such as
-   EBCDIC, will generally perform % character translation of textual
-   identifiers to UTF-8 STD63 [1] at an % internal interface, thereby
-   providing more meaningful identifiers % than those resulting from
-   simply percent-encoding the original % octets.  % % For example,
-   consider an information service that provides data, % stored locally
-   using an EBCDIC-based file system, to clients on the % Internet
-   through an HTTP server.  When an author creates a file with % the
-   name "Laguna Beach" on that file system, the "http" URI %
-   corresponding to that resource is expected to contain the meaningful
-   % string "Laguna%20Beach".  If, however, that server produces URIs by
-
-
-
-Daboo, et al.           Expires November 16, 2017               [Page 9]
-
-Internet-Draft              calconnect-vpath                    May 2017
-
-
-   % using an overly simplistic raw octet mapping, then the result would
-   % be a URI containing "%D3%81%87%A4%95%81@%C2%85%81%83%88".  An %
-   internal transcoding interface fixes this problem by transcoding the
-   % local name to a superset of US-ASCII prior to producing the URI.  %
-   Naturally, proper interpretation of an incoming URI on such an %
-   interface requires that percent-encoded octets be decoded (e.g., %
-   "%20" to SP) before the reverse transcoding is applied to obtain the
-   % local name.  % %
 
 9.  Security Considerations
 
@@ -542,25 +495,22 @@ Internet-Draft              calconnect-vpath                    May 2017
    into account of security considerations provided in [RFC3986] and
    [RFC3987].
 
-   % Adapted from RFC 5147
-
    Please note that fragment identifiers are not used when resolving a
    URI to retrieve the representation of a resource.
+
+
+
+
+Daboo, et al.           Expires November 16, 2017               [Page 9]
+
+Internet-Draft              calconnect-vpath                    May 2017
+
 
 10.  IANA Considerations
 
    Extension vPath specifications produced as Standards Track RFCs MUST
    not modify vPath functionality defined in this document, but are
    allowed to carry additional extensions to vPath.
-
-
-
-
-
-Daboo, et al.           Expires November 16, 2017              [Page 10]
-
-Internet-Draft              calconnect-vpath                    May 2017
-
 
 11.  Examples
 
@@ -604,20 +554,20 @@ Internet-Draft              calconnect-vpath                    May 2017
 
 
      /VCALENDAR/VEVENT#ATTENDEE[@CN!Cyrus Daboo]
+
+
+
+Daboo, et al.           Expires November 16, 2017              [Page 10]
+
+Internet-Draft              calconnect-vpath                    May 2017
+
+
      --
      /VCALENDAR/VEVENT#ATTENDEE&CN!Cyrus%20Daboo
 
 
      #ATTENDEE[=mailto:cyrus@example.com]
      --
-
-
-
-Daboo, et al.           Expires November 16, 2017              [Page 11]
-
-Internet-Draft              calconnect-vpath                    May 2017
-
-
      #ATTENDEE=mailto:cyrus@example.com
 
 
@@ -659,20 +609,19 @@ Internet-Draft              calconnect-vpath                    May 2017
 
    o  "/VCALENDAR/VEVENT[UID=1234][RID=20160902T223000Z]"
 
+
+
+
+
+Daboo, et al.           Expires November 16, 2017              [Page 11]
+
+Internet-Draft              calconnect-vpath                    May 2017
+
+
    Targets any "VEVENT" components that have a "UID" property value
    exactly equal to "1234" and have a "RECURRENCE-ID" property whose UTC
    value is "20160902T223000Z", in the "VCALENDAR" component in the
    iCalendar object.
-
-
-
-
-
-
-Daboo, et al.           Expires November 16, 2017              [Page 12]
-
-Internet-Draft              calconnect-vpath                    May 2017
-
 
 11.3.  Referring To Properties
 
@@ -718,17 +667,17 @@ Internet-Draft              calconnect-vpath                    May 2017
 
    o  "/VCALENDAR/VEVENT#ATTENDEE[@CN!Cyrus Daboo]"
 
+
+
+Daboo, et al.           Expires November 16, 2017              [Page 12]
+
+Internet-Draft              calconnect-vpath                    May 2017
+
+
    Targets any "ATTENDEE" properties that have a "CN" property parameter
    not equal to the value "Cyrus Daboo", or do not have a "CN" property
    parameter present in all "VEVENT" components, in the "VCALENDAR"
    component in the iCalendar object.
-
-
-
-Daboo, et al.           Expires November 16, 2017              [Page 13]
-
-Internet-Draft              calconnect-vpath                    May 2017
-
 
    o  "#ATTENDEE[=mailto:cyrus@example.com]"
 
@@ -772,24 +721,44 @@ Internet-Draft              calconnect-vpath                    May 2017
 
    [TODO, lifted from VPATCH]
 
+
+
+
+
+Daboo, et al.           Expires November 16, 2017              [Page 13]
+
+Internet-Draft              calconnect-vpath                    May 2017
+
+
    Path contains exactly zero or more component segments, one property
    segment, one parameter segment, and one value segment.
 
    o  "/VCALENDAR/VEVENT#ATTENDEE;MEMBER=mailto:group@example.com"
 
-
-
-
-
-Daboo, et al.           Expires November 16, 2017              [Page 14]
-
-Internet-Draft              calconnect-vpath                    May 2017
-
-
    Targets all "MEMBER" property parameter values with the value
    "mailto:group@example.com" in all "ATTENDEE" properties in all
    "VEVENT" components in the "VCALENDAR" component in the iCalendar
    object.
+
+11.7.  Fragment Usage Examples
+
+   Plural results:
+
+   o  "https://example.com/cyrus.vcf#//VCARD&TEL"
+
+   o  "https://example.com/cyrus/vcard#//VCARD&TEL"
+
+   o  "https://example.com/cyrus/vcard#//VCARD/PROFILE(1)&TEL;TYPE"
+
+   Singular results:
+
+   o  "https://example.com/cyrus.vcf#//VCARD&TEL(1)"
+
+      *  => ""TEL;TYPE=home,work:+123456789""
+
+   o  "https://example.com/cyrus/vcard#//VCARD/PROFILE(1)&TEL(1);TYPE"
+
+      *  => ""home,work""
 
 12.  References
 
@@ -808,6 +777,14 @@ Internet-Draft              calconnect-vpath                    May 2017
    [RFC3987]  Duerst, M. and M. Suignard, "Internationalized Resource
               Identifiers (IRIs)", RFC 3987, DOI 10.17487/RFC3987,
               January 2005, <http://www.rfc-editor.org/info/rfc3987>.
+
+
+
+
+Daboo, et al.           Expires November 16, 2017              [Page 14]
+
+Internet-Draft              calconnect-vpath                    May 2017
+
 
    [RFC4791]  Daboo, C., Desruisseaux, B., and L. Dusseault,
               "Calendaring Extensions to WebDAV (CalDAV)", RFC 4791,
@@ -833,15 +810,6 @@ Internet-Draft              calconnect-vpath                    May 2017
               RFC 5789, DOI 10.17487/RFC5789, March 2010,
               <http://www.rfc-editor.org/info/rfc5789>.
 
-
-
-
-
-Daboo, et al.           Expires November 16, 2017              [Page 15]
-
-Internet-Draft              calconnect-vpath                    May 2017
-
-
    [RFC6350]  Perreault, S., "vCard Format Specification", RFC 6350,
               DOI 10.17487/RFC6350, August 2011,
               <http://www.rfc-editor.org/info/rfc6350>.
@@ -864,16 +832,22 @@ Internet-Draft              calconnect-vpath                    May 2017
               <http://calconnect.org/about/technical-committees/
               vcard-technical-committee>.
 
+
+
+
+
+
+Daboo, et al.           Expires November 16, 2017              [Page 15]
+
+Internet-Draft              calconnect-vpath                    May 2017
+
+
    [RFC3629]  Yergeau, F., "UTF-8, a transformation format of ISO
               10646", STD 63, RFC 3629, DOI 10.17487/RFC3629, November
               2003, <http://www.rfc-editor.org/info/rfc3629>.
 
    [VPATCH]   Daboo, C. and K. Murchison, "The iCalendar VPATCH
-              Component (draft)", 10 2016.
-
-12.3.  URIs
-
-   [1] or % some other superset of the US-ASCII character encoding
+              Component (draft)", October 2016.
 
 Appendix A.  Acknowledgements
 
@@ -885,18 +859,6 @@ Appendix A.  Acknowledgements
    This specification was developed as joint work between TC Calendar
    [CALCONNECT-CALENDAR] and TC VCARD [CALCONNECT-VCARD] committees at
    CalConnect, the Calendaring and Scheduling Consortium.
-
-
-
-
-
-
-
-
-Daboo, et al.           Expires November 16, 2017              [Page 16]
-
-Internet-Draft              calconnect-vpath                    May 2017
-
 
 Authors' Addresses
 
@@ -930,6 +892,12 @@ Authors' Addresses
    URI:   https://www.dmfs.org
 
 
+
+Daboo, et al.           Expires November 16, 2017              [Page 16]
+
+Internet-Draft              calconnect-vpath                    May 2017
+
+
    Ronald Henry Tse
    Ribose
    Suite 1111, 1 Pedder Street
@@ -938,20 +906,6 @@ Authors' Addresses
 
    Email: ronald.tse@ribose.com
    URI:   https://www.ribose.com
-
-
-
-
-
-
-
-
-
-
-
-Daboo, et al.           Expires November 16, 2017              [Page 17]
-
-Internet-Draft              calconnect-vpath                    May 2017
 
 
    Peter Kwan Yu Tam
@@ -995,14 +949,4 @@ Internet-Draft              calconnect-vpath                    May 2017
 
 
 
-
-
-
-
-
-
-
-
-
-
-Daboo, et al.           Expires November 16, 2017              [Page 18]
+Daboo, et al.           Expires November 16, 2017              [Page 17]
