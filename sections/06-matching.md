@@ -8,7 +8,7 @@ the path.
 Component segments can include an optional match item.  When present,
 this allows targeting of components that:
 
-* match existance of (or lack thereof) a property
+* match existence of (or lack thereof) a property
 * match a specific property value
 * TODO: match based on property parameters and parameter values
 
