@@ -12,5 +12,5 @@ Notation in this document is described in ABNF [@!RFC5234] as used by
 ##  Definitions
 
 vPath
-: a method of locating an element within a vObject or a vObject.
+: a method of locating a vObject or an element within a vObject.
 
