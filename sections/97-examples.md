@@ -68,7 +68,7 @@ Path contains exactly one or more component segments:
 
 * `/VCARD`
 
-  Targets the "VCARD" component in the vCard object (@!RFC6350).
+  Targets the "VCARD" component in the vCard object [@!RFC6350].
 
 * `/VCALENDAR/VEVENT`
 
