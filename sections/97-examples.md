@@ -5,59 +5,109 @@ TODO!
 ## From Marten: Updated examples (old vs. new)
 
 ```
+/VCALENDAR/VEVENT(@uid='1234')
+--
 /VCALENDAR/VEVENT(UID=1234)
 --
 /VCALENDAR/VEVENT&UID=1234
 
 
+/VCALENDAR/VEVENT(@uid='1234%2F4567' & @rid='M')
+/VCALENDAR/VEVENT(@uid='1234%2F4567' & !@rid)
+--
 /VCALENDAR/VEVENT(UID=1234%2F4567)(RID=M)
 --
 /VCALENDAR/VEVENT&UID=1234%2F4567&!RECURRENCE-ID
 
 
+/VCALENDAR/VEVENT(@uid='1234')@STATUS
+--
 /VCALENDAR/VEVENT(UID=1234)#STATUS
 --
 /VCALENDAR/VEVENT&UID=1234#STATUS
 
 
+/VCALENDAR/VEVENT@ATTENDEE(='mailto:cyrus@example.com')
+/VCALENDAR/VEVENT(@attendee='mailto:cyrus@example.com')@ATTENDEE
+--
 /VCALENDAR/VEVENT#ATTENDEE(=mailto:cyrus@example.com)
 --
 /VCALENDAR/VEVENT#ATTENDEE=mailto:cyrus@example.com
 
 
+/VCALENDAR/VEVENT@ATTENDEE(!='mailto:cyrus@example.com')
+--
 /VCALENDAR/VEVENT#ATTENDEE(!mailto:cyrus@example.com)
 --
 /VCALENDAR/VEVENT#ATTENDEE!mailto:cyrus@example.com
 
 
+# return ATTENDEE that contains MEMBER parameter
+/VCALENDAR/VEVENT@ATTENDEE(;MEMBER)
+# return ATTENDEE that does not contains MEMBER parameter
+/VCALENDAR/VEVENT@ATTENDEE(!;MEMBER)
+
+
+/VCALENDAR/VEVENT@ATTENDEE;MEMBER
+--
 /VCALENDAR/VEVENT#ATTENDEE(@MEMBER)
 --
 /VCALENDAR/VEVENT#ATTENDEE&MEMBER
 
 
+/VCALENDAR/VEVENT@ATTENDEE(;cn='Cyrus Daboo')
+--
 /VCALENDAR/VEVENT#ATTENDEE(@CN=Cyrus Daboo)
 --
 /VCALENDAR/VEVENT#ATTENDEE&CN=Cyrus%20Daboo
 
 
+/VCALENDAR/VEVENT@ATTENDEE(;cn!='Cyrus Daboo')
+--
 /VCALENDAR/VEVENT#ATTENDEE(@CN!Cyrus Daboo)
 --
 /VCALENDAR/VEVENT#ATTENDEE&CN!Cyrus%20Daboo
 
 
+@ATTENDEE(='mailto:cyrus@example.com')
+--
 #ATTENDEE(=mailto:cyrus@example.com)
 --
 #ATTENDEE=mailto:cyrus@example.com
 
 
+/VCALENDAR/VEVENT@ATTENDEE(='mailto:cyrus@example.com');PARTSTAT
+--
 /VCALENDAR/VEVENT#ATTENDEE(=mailto:cyrus@example.com);PARTSTAT
 --
 /VCALENDAR/VEVENT#ATTENDEE=mailto:cyrus@example.com;PARTSTAT
 
 
+/VCALENDAR/VEVENT@ATTENDEE;MEMBER(='mailto:group@example.com')
+--
 /VCALENDAR/VEVENT#ATTENDEE;MEMBER=mailto:group@example.com
 --
 /VCALENDAR/VEVENT#ATTENDEE&MEMBER=mailto:group@example.com;MEMBER
+
+
+# specify the 3rd card with a tel and point to tel
+/VCARD(@tel):first(1):offset(2)@tel
+/VCARD(@n:index(0)='Tam' | ;type='home')
+/VCARD(@n:index(0)='Tam' | ;type!='home')
+/VCARD(!@tel)
+/VCARD(@n:index(0)='Tam' | ;type='home')
+/VCARD(@n:index(0)='Tam' | ;type:starts-with('h'))
+/VCARD(@n:index(0):equals('Tam')
+/VCARD(@n:index(0):starts-with('Tam')
+/VCARD(@n:index(0):ends-with('Tam')
+/VCARD(@n:index(0):contains('Tam')
+
+# has to escape regular expressions like *
+/VCARD(@n:index(0):matches(/Ta[nm]/)
+
+/VCARD(@n:index(-1):contains('Tam')
+
+
 ```
 
 ## Referring To Components

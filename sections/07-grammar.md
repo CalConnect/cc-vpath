@@ -8,12 +8,12 @@ TODO: Probably better to use fragment-unreserved as delimiters.
 {align=left}
 ~~~ abnf
 fragment-unreserved = “:" / "@" / "?" / "!" / "$" / "&" /
-                      "’" / "(" / ")" / "," / ";" / "=“
+                      "'" / "(" / ")" / "," / ";" / "=“
                       ; only for authoring development reference
 
 root-delim  = "/"
 comp-delim  = "/"
-prop-delim  = "&"
+prop-delim  = "@"
 param-delim = ";"
 
 comp-name   = text

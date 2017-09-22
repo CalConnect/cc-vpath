@@ -32,3 +32,7 @@ This document defines URI fragment identifiers for both the text/vcard
 This makes it possible to utilize the vPath to refer to an element of a
 vObject that can be located through a URI [@RFC3986].
 
+## vPath For Queries
+
+TODO: e.g., in CardQL vPath is used to search and filter results of
+vCards / Address Books.
