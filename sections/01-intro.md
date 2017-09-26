@@ -26,8 +26,8 @@ TODO elaborate.
 The vPath syntax is designed to be "fragment-friendly" adhering to the
 URI fragment syntax defined in [@RFC3986].
 
-This document defines URI fragment identifiers for both the text/vcard
-[@RFC6350] and text/calendar [@RFC5545] media types.
+This document defines URI fragment identifiers for both the "text/vcard"
+[@RFC6350] and "text/calendar" [@RFC5545] media types.
 
 This makes it possible to utilize the vPath to refer to an element of a
 vObject that can be located through a URI [@RFC3986].

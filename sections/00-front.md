@@ -1,7 +1,7 @@
 %%%
 
 Title = "vPath and URI Fragment Identifiers for vObjects"
-abbrev = "calconnect-vpath"
+abbrev = "draft-calconnect-vpath-00"
 category = "std"
 docName = "draft-calconnect-vpath"
 updates = [5545, 6321, 6350, 6351]
@@ -9,7 +9,7 @@ ipr= "trust200902"
 area = "Internet"
 workgroup = "Network Working Group"
 
-date = 2017-05-15T00:00:00Z
+date = 2017-09-26T00:00:00Z
 
 [[author]]
 initials="C."

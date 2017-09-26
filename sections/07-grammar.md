@@ -7,14 +7,14 @@ TODO: Probably better to use fragment-unreserved as delimiters.
 
 {align=left}
 ~~~ abnf
-fragment-unreserved = “:" / "@" / "?" / "!" / "$" / "&" /
-                      "'" / "(" / ")" / "," / ";" / "=“
+fragment-unreserved = ":" / "@" / "?" / "!" / "$" / "&" /
+                      "'" / "(" / ")" / "," / ";" / "="
                       ; only for authoring development reference
 
-root-delim  = "/"
-comp-delim  = "/"
-prop-delim  = "@"
-param-delim = ";"
+root-prefix  = "/"
+comp-prefix  = "/"
+prop-prefix  = "@"
+param-prefix = ";"
 
 comp-name   = text
 prop-name   = text
@@ -28,7 +28,7 @@ operator-equality = operator-equal / operator-not-equal
 vpath = path-absolute / path-relative
   ; generic vPath refers to any component, property or parameter
 
-path-absolute = root-delim comp-segment [prop-path]
+path-absolute = root-prefix comp-segment [prop-path]
   ; a path relative to the root of the vObject
 
 path-relative = *( comp-segment ) [prop-path] / prop-path
@@ -37,7 +37,7 @@ path-relative = *( comp-segment ) [prop-path] / prop-path
 
 prop-path = 1*( prop-segment ) [ *( param-segment ) ]
 
-comp-segment = comp-delim comp-name *( prop-delim prop-match )
+comp-segment = comp-prefix comp-name *( prop-prefix prop-match )
   ; a path segment with optional match criteria to select a specific
   ; component with the given name (or object class)
 
@@ -52,8 +52,8 @@ prop-value-match = operator-equality value-escaped
   ; and a matching value (using the given operator)
 
 
-prop-segment = prop-delim prop-name [prop-value-match]
-                 *( param-delim param-match )
+prop-segment = prop-prefix prop-name [prop-value-match]
+                 *( param-prefix param-match )
 
 param-match = param-presence-match / param-name param-value-match
   ; matches a specific property parameter
@@ -66,7 +66,7 @@ param-value-match = operator-equality value-escaped
   ; matches a specific property parameter and its value
 
 
-param-segment = param-delim param-name
+param-segment = param-prefix param-name
 
 
 value-escaped = *( unreserved / pct-encoded )

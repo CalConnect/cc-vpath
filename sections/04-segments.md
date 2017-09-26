@@ -3,21 +3,21 @@
 The vObject Path is composed of a list of "segments" that matches an
 vObject element in the vObject object model hierarchy.
 
-Segments are separated by segment delimiters within the vObject Path.
+Segments are separated by segment prefixes within the vObject Path.
 Depending on the element type described, a path segment is always
-preceded by the following delimiters ("path segment delimiters"):
+preceded by the following prefix ("path segment prefix"):
 
-Valid delimiters are as follows:
+Valid prefixes are as follows:
 
 * Component: "/"
-* Property: "&"
+* Property: "@"
 * Property parameter: ";"
 * Property value: "="
 * Property parameter value: "="
 
 A path can start with a series of component segments (which always
 have a "/" prefix).  Those can be followed by a property segment
-(which always has a "&" prefix").  A property segment can be followed
+(which always has a "@" prefix").  A property segment can be followed
 by either a parameter segment (which always has a ";" prefix), or a
 value segment (which always has a "=" prefix).  A parameter segment
 can be followed by a value segment (which always has a "=" prefix).

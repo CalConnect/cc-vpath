@@ -9,8 +9,9 @@ Component segments can include an optional match item.  When present,
 this allows targeting of components that:
 
 * match existence of (or lack thereof) a property
-* match a specific property value
-* TODO: match based on property parameters and parameter values
+* match based on property values
+* match based on property parameters and parameter values
+* match based on property parameters and parameter values
 
 Specific vObjects may define specific matching criteria, for example
 in iCalendar Path, the "RID" property matcher can be used to match the

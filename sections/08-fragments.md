@@ -2,13 +2,12 @@
 
 TODO: below lifted from RFC 2854, reword this.
 
-The URI specification [@RFC3986] notes that the semantics of a fragment
-identifier (part of a URI after a "#") is a property of the data
-resulting from a retrieval action, and that the format and
-interpretation of fragment identifiers is dependent on the media type of
-the retrieval result.
+The URI specification [@RFC3986] specifies that a fragment identifier
+(part of a URI after a "#") is a property of the data resulting from a
+retrieval action, and that the format and interpretation of fragment
+identifiers is dependent on the media type of the retrieval result.
 
-For documents of the text/vcard and text/calendar media types, the
+For documents of the "text/vcard" and "text/calendar" media types, the
 fragment specifies the desired vPath of the document.
 
 ## Character Set
