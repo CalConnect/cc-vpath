@@ -1,22 +1,63 @@
 # Examples
 
+## MATCHERS TODO
+
+Value operators (property value, parameter value)
+
+* equal `[<name>] = <value>` or `<name>:equal(<value>)`
+* not equal `[<name>] != <value>` or `<name>:not-equal(<value>)`
+* `:starts-with(string)`
+* `:ends-with(string)`
+* `:contains(string)`
+* `:regex(regular-expression)` (as defined in RFC 3986 and IEEE POSIX Extended Regular Expression (POSIX ERE))
+
+
+## PROPERTY IDETNFIEIRS
+
+* `:field(fieldset-index)` (0..n and -n..-1)
+* `:field(fieldset-index)`
+
+
+## MATCHING CONDITIONS
+
+Matching conditions operators (only conditions), should follow AND and
+OR precedence:
+
+* and `<cond> & <cond> & ...` or `and(<cond>, <cond>, ...)`
+* or `<cond> | <cond> | ...` or `or(<cond>, <cond>, ...)`
+
+Segment conditions (property name, component name, parameter name)
+
+* not exist `! <name>` or `not-exist(<name>)`
+* exist `<name>` or `exists(<name>)`
+
+List conditions (list like `CATEGORIES`)
+
+* `:any(<cond>)` Any element matches `<cond>`
+* `:all(<cond>)` All elements matches `<cond>`, `(@CATEGORIES:any(="football", ="soccer"))`
+* `:count(<num>)` has `<num>` elements.
+* `:one(<num>)` has `ONE` elements.
+* `:none(<num>)` has `NONE` elements.
+
+
 ```
 # specify the 3rd card with a tel and point to tel
 /VCARD(@tel):first(1):offset(2)@tel
-/VCARD(@n:index(0)='Tam' | ;type='home')
-/VCARD(@n:index(0)='Tam' | ;type!='home')
+/VCARD(@n:field(0)='Tam' | ;type='home')
+/VCARD(@n:field(0)='Tam' | ;type!='home')
 /VCARD(!@tel)
-/VCARD(@n:index(0)='Tam' | ;type='home')
-/VCARD(@n:index(0)='Tam' | ;type:starts-with('h'))
-/VCARD(@n:index(0):equals('Tam')
-/VCARD(@n:index(0):starts-with('Tam')
-/VCARD(@n:index(0):ends-with('Tam')
-/VCARD(@n:index(0):contains('Tam')
+/VCARD(@n:field(0)='Tam' | ;type='home')
+/VCARD(@n:field(0)='Tam' | ;type:starts-with('h'))
+/VCARD(@n:field(0):equals('Tam')
+/VCARD(@n:field(0):starts-with('Tam')
+/VCARD(@n:field(0):ends-with('Tam')
+/VCARD(@n:field(0):contains('Tam')
 
 # has to escape regular expressions like *
-/VCARD(@n:index(0):matches(/Ta[nm]/)
+/VCARD(@n:field(0):matches(/Ta[nm]/)
 
-/VCARD(@n:index(-1):contains('Tam')
+# Targets N Honorary Suffix
+/VCARD(@n:field(-1):contains('Jr.')
 
 
 ```
@@ -160,7 +201,7 @@ segment, one parameter segment, and one value segment.
   object.
 
 
-## Fragment Usage Examples
+## Fragment Usage Examples TODO: MOVE TO VOBJECT NORMALIZATION
 
 Plural results:
 

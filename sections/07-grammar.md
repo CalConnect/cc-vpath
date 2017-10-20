@@ -28,14 +28,14 @@ operator-equality = operator-equal / operator-not-equal
 vpath = path-absolute / path-relative
   ; generic vPath refers to any component, property or parameter
 
-path-absolute = root-prefix comp-segment [prop-path]
+path-absolute = root-prefix *( comp-segment ) (prop-path)
   ; a path relative to the root of the vObject
 
-path-relative = *( comp-segment ) [prop-path] / prop-path
+path-relative = *( comp-segment ) (prop-path) / prop-path
   ; a path relative to the position of the "current" component
   ; (empty comp-segment refers to the current component)
 
-prop-path = 1*( prop-segment ) [ *( param-segment ) ]
+prop-path = 1*( prop-segment ) ( *( param-segment ) )
 
 comp-segment = comp-prefix comp-name *( prop-prefix prop-match )
   ; a path segment with optional match criteria to select a specific
@@ -52,7 +52,7 @@ prop-value-match = operator-equality value-escaped
   ; and a matching value (using the given operator)
 
 
-prop-segment = prop-prefix prop-name [prop-value-match]
+prop-segment = prop-prefix prop-name (prop-value-match)
                  *( param-prefix param-match )
 
 param-match = param-presence-match / param-name param-value-match

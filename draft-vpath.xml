@@ -1,0 +1,878 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rfc SYSTEM 'rfc2629.dtd' []>
+<rfc ipr="trust200902" category="std" docName="draft-calconnect-vpath" updates="5545, 6321, 6350, 6351">
+<?rfc toc="yes"?>
+<?rfc symrefs="yes"?>
+<?rfc sortrefs="yes"?>
+<?rfc compact="yes"?>
+<?rfc subcompact="no"?>
+<?rfc private=""?>
+<?rfc topblock="yes"?>
+<?rfc comments="no"?>
+<front>
+<title abbrev="draft-calconnect-vpath-00">vPath and URI Fragment Identifiers for vObjects</title>
+
+<author initials="C." surname="Daboo" fullname="Cyrus Daboo">
+<organization>Apple Inc.</organization>
+<address>
+<postal>
+<street>1 Infinite Loop</street>
+<city>Cupertino</city>
+<code>95014</code>
+<country>USA</country>
+<region>CA</region>
+</postal>
+<phone></phone>
+<email>cyrus@daboo.name</email>
+<uri>https://www.apple.com</uri>
+</address>
+</author>
+<author initials="K." surname="Murchison" fullname="Kenneth Murchison">
+<organization>Carnegie Mellon University</organization>
+<address>
+<postal>
+<street>5000 Forbes Avenue</street>
+<city>Pittsburgh</city>
+<code>15213</code>
+<country>USA</country>
+<region>PA</region>
+</postal>
+<phone></phone>
+<email>murch@andrew.cmu.edu</email>
+<uri>https://www.cmu.edu</uri>
+</address>
+</author>
+<author initials="M." surname="Gajda" fullname="Marten Gajda">
+<organization>dmfs GmbH</organization>
+<address>
+<postal>
+<street>Schandauer Straße 34</street>
+<city>Dresden</city>
+<code>01309</code>
+<country>Germany</country>
+<region></region>
+</postal>
+<phone></phone>
+<email>marten@dmfs.org</email>
+<uri>https://www.dmfs.org</uri>
+</address>
+</author>
+<author initials="R. H." surname="Tse" fullname="Ronald Henry Tse">
+<organization>Ribose</organization>
+<address>
+<postal>
+<street>Suite 1111, 1 Pedder Street</street>
+<city>Central</city>
+<code></code>
+<country>Hong Kong</country>
+<region>Hong Kong</region>
+</postal>
+<phone></phone>
+<email>ronald.tse@ribose.com</email>
+<uri>https://www.ribose.com</uri>
+</address>
+</author>
+<author initials="P." surname="Tam" fullname="Peter Kwan Yu Tam">
+<organization>Ribose</organization>
+<address>
+<postal>
+<street>Suite 1111, 1 Pedder Street</street>
+<city>Central</city>
+<code></code>
+<country>Hong Kong</country>
+<region>Hong Kong</region>
+</postal>
+<phone></phone>
+<email>peter.tam@ribose.com</email>
+<uri>https://www.ribose.com</uri>
+</address>
+</author>
+<date year="2017" month="September" day="26"/>
+
+<area>Internet</area>
+<workgroup>Network Working Group</workgroup>
+
+
+<abstract>
+<t>This document defines a mechanism to refer to elements inside a
+vObject (TODO: reference) called &quot;vPath&quot;. vPath applies to the following
+formats:
+</t>
+<t>
+<list style="symbols">
+<t>vCard version 4.0 <xref target="RFC6350"/>: the VCARD component</t>
+<t>Internet Calendaring and Scheduling Core Object Specification
+(iCalendar) <xref target="RFC5545"/>, the VCALENDAR, VEVENT, VJOURNAL, VFREEBUSY,
+VTIMEZONE, VALARM, VTODO, STANDARD, DAYLIGHT components</t>
+<t>Calendar Availability Extensions <xref target="RFC7953"/>: the VAVAILABILITY,
+AVAILABLE components</t>
+<t>vObject Patching (TODO: I-Ddaboo-icalendar-vpatch): the VPATCH
+component</t>
+</list>
+</t>
+<t>Moreover, vPath is used as a URI Fragment Identifier <xref target="RFC3986"/> scheme
+for the following vObject MIME entities:
+</t>
+<t>
+<list style="symbols">
+<t>text/vcard <xref target="RFC6350"/></t>
+<t>text/calendar <xref target="RFC5545"/></t>
+</list>
+</t>
+</abstract>
+
+
+</front>
+
+<middle>
+
+<section anchor="introduction" title="Introduction">
+<t>It is often necessary to refer to a particular element within a
+vObject, for example, in the case of patching a vObject component
+<xref target="VPATCH"/> with differential updates. Here we define a mechanism called
+&quot;vObject Path&quot;, to describe an element's location within a vObject.
+</t>
+<t>For example, the &quot;REL&quot; property in a vCard Profile component contains a
+vCard Property Path, which is used to match a property within the vCard
+to indicate the profile's linkage on this property.
+</t>
+<t>This specification was developed as joint work between TC Calendar
+<xref target="CALCONNECT-CALENDAR"/> and TC VCARD <xref target="CALCONNECT-VCARD"/> committees at
+CalConnect, the Calendaring and Scheduling Consortium.
+</t>
+
+<section anchor="vpath-within-a-vobject" title="vPath Within a vObject">
+<t>vPath syntax allows a value within a vObject to refer to other
+vObject(s) or element(s) within an enclosing vObject or an underlying
+vObject.
+</t>
+<t>TODO elaborate.
+</t>
+</section>
+
+<section anchor="vpath-within-fragments" title="vPath Within Fragments">
+<t>The vPath syntax is designed to be &quot;fragment-friendly&quot; adhering to the
+URI fragment syntax defined in <xref target="RFC3986"/>.
+</t>
+<t>This document defines URI fragment identifiers for both the &quot;text/vcard&quot;
+<xref target="RFC6350"/> and &quot;text/calendar&quot; <xref target="RFC5545"/> media types.
+</t>
+<t>This makes it possible to utilize the vPath to refer to an element of a
+vObject that can be located through a URI <xref target="RFC3986"/>.
+</t>
+</section>
+
+<section anchor="vpath-for-queries" title="vPath For Queries">
+<t>TODO: e.g., in CardQL vPath is used to search and filter results of
+vCards / Address Books.
+</t>
+</section>
+</section>
+
+<section anchor="conventions-used-in-this-document" title="Conventions Used in This Document">
+<t>The key words &quot;MUST&quot;, &quot;MUST NOT&quot;, &quot;REQUIRED&quot;, &quot;SHALL&quot;,
+&quot;SHALL NOT&quot;, &quot;SHOULD&quot;, &quot;SHOULD NOT&quot;, &quot;RECOMMENDED&quot;,
+&quot;MAY&quot;, and &quot;OPTIONAL&quot; in this document are to be interpreted as
+described in <xref target="RFC2119"/>.
+</t>
+<t>Notation in this document is described in ABNF <xref target="RFC5234"/> as used by
+<xref target="RFC6350"/> and <xref target="RFC5545"/>.
+</t>
+
+<section anchor="definitions" title="Definitions">
+<t>
+<list style="hanging">
+<t hangText="vPath">
+<vspace />
+a method of locating a vObject or an element within a vObject.</t>
+</list>
+</t>
+</section>
+</section>
+
+<section anchor="profile-property-path" title="vObject Path">
+<t>TODO: Description on why we need the path.
+</t>
+</section>
+
+<section anchor="path-segments" title="Path Segments">
+<t>The vObject Path is composed of a list of &quot;segments&quot; that matches an
+vObject element in the vObject object model hierarchy.
+</t>
+<t>Segments are separated by segment prefixes within the vObject Path.
+Depending on the element type described, a path segment is always
+preceded by the following prefix (&quot;path segment prefix&quot;):
+</t>
+<t>Valid prefixes are as follows:
+</t>
+<t>
+<list style="symbols">
+<t>Component: &quot;/&quot;</t>
+<t>Property: &quot;@&quot;</t>
+<t>Property parameter: &quot;;&quot;</t>
+<t>Property value: &quot;=&quot;</t>
+<t>Property parameter value: &quot;=&quot;</t>
+</list>
+</t>
+<t>A path can start with a series of component segments (which always
+have a &quot;/&quot; prefix).  Those can be followed by a property segment
+(which always has a &quot;@&quot; prefix&quot;).  A property segment can be followed
+by either a parameter segment (which always has a &quot;;&quot; prefix), or a
+value segment (which always has a &quot;=&quot; prefix).  A parameter segment
+can be followed by a value segment (which always has a &quot;=&quot; prefix).
+</t>
+
+<section anchor="encoding" title="Encoding">
+<t>TODO.
+</t>
+</section>
+
+<section anchor="character-set" title="Character Set">
+<t>TODO. Both vCard <xref target="RFC6350"/> and iCalendar <xref target="RFC5545"/> use UTF-8
+<xref target="RFC3629"/>.
+</t>
+</section>
+</section>
+
+<section anchor="path-types" title="Path Types">
+<t>A vObject path can either be an &quot;absolute&quot; or &quot;relative&quot; path.
+</t>
+
+<section anchor="absolute-path" title="Absolute Path">
+<t>Characteristics:
+</t>
+<t>
+<list style="symbols">
+<t>Always starts with &quot;//&quot;.</t>
+<t>The frame of reference begins at the top-level vObject.</t>
+<t>Refers to an element under the hierarchy of the top-level vObject.</t>
+</list>
+</t>
+<t>An absolute path always starts with a &quot;//&quot;, composed by the absolute root
+character (&quot;/&quot;) followed by a component segment prefix, as only vObjects
+are allowed at the top most vObject level.
+</t>
+<t>Example:
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">//VCARD@TEL</spanx>: refers to the <spanx style="verb">TEL</spanx> properties of the top-level <spanx style="verb">VCARD</spanx>
+components</t>
+</list>
+</t>
+</section>
+
+<section anchor="relative-path" title="Relative Path">
+<t>Characteristics:
+</t>
+<t>
+<list style="symbols">
+<t>Does not start with &quot;//&quot;.</t>
+<t>The frame of reference begins at the current level vObject.</t>
+<t>Refers to an element under the hierarchy of the current level vObject.</t>
+</list>
+</t>
+<t>A relative path can start with a component segment or a property
+segment, with the path assumed to be relative to an enclosing
+component defined by the context.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VEVENT@UID</spanx>: refers to the <spanx style="verb">UID</spanx> properties of the current level
+<spanx style="verb">VEVENT</spanx> components (presumably from within a &quot;VCALENDAR&quot; component).</t>
+</list>
+</t>
+<t>Relative paths are unable to refer to an element that is outside of the
+current component. The only way to do so is through an absolute path.
+This restriction is for simplicity and to address security concerns,
+while conforming in expectation to the usage of XPath <xref target="RFC5261"/>.
+</t>
+</section>
+</section>
+
+<section anchor="targeting-and-matching" title="Targeting and Matching">
+
+<section anchor="components" title="Components">
+<t>To target a second-level component, a component segment is appended to
+the path.
+</t>
+<t>Component segments can include an optional match item.  When present,
+this allows targeting of components that:
+</t>
+<t>
+<list style="symbols">
+<t>match existence of (or lack thereof) a property</t>
+<t>match based on property values</t>
+<t>match based on property parameters and parameter values</t>
+<t>match based on property parameters and parameter values</t>
+</list>
+</t>
+<t>Specific vObjects may define specific matching criteria, for example
+in iCalendar Path, the &quot;RID&quot; property matcher can be used to match the
+&quot;master&quot; component by the special value of &quot;M&quot; or the general &quot;ridval&quot;
+value such as &quot;20160902T223000Z&quot;.
+</t>
+</section>
+
+<section anchor="properties" title="Properties">
+<t>To target a property inside of a component, a property segment is added
+to the path.
+</t>
+<t>A property segment can include an optional match item. When present,
+this allows targeting of properties:
+</t>
+<t>
+<list style="symbols">
+<t>by value (matching or not matching a specific value)</t>
+<t>contains or lack a particular property parameter</t>
+<t>by property parameter value (matching or not matching a specific value)</t>
+</list>
+</t>
+</section>
+
+<section anchor="property-parameters" title="Property Parameters">
+<t>To target a property parameter, a parameter segment is added to the
+property segment at the end of the path.
+</t>
+<t>To target a single value in a multi-valued property, a value segment
+is added to the property segment at the end of the path.
+</t>
+<t>To target a single value in a multi-valued property parameter, a value
+segment is added to the parameter segment at the end of the path.
+</t>
+</section>
+
+<section anchor="match-syntax" title="Match Syntax">
+<t>Values in match items MUST use URL-style percent (&quot;%&quot;) encoding of
+the characters &quot;/&quot;, &quot;#&quot;, &quot;;&quot;, &quot;=&quot;, and &quot;]&quot;.  This allows a path to be
+quickly split into segments by breaking apart the text on the relevant
+delimiter characters.
+</t>
+<t>TODO: provide ABNF representation
+</t>
+<t>TODO: Singular/plural match, and access to singular plural results.
+</t>
+</section>
+</section>
+
+<section anchor="abnf-representation" title="ABNF Representation">
+<t>Syntax for a vObject path is defined by the following ABNF notation.
+</t>
+<t>TODO: Probably better to use fragment-unreserved as delimiters.
+</t>
+
+<figure align="left"><artwork align="left" type="abnf">
+fragment-unreserved = ":" / "@" / "?" / "!" / "$" / "&amp;" /
+                      "'" / "(" / ")" / "," / ";" / "="
+                      ; only for authoring development reference
+
+root-prefix  = "/"
+comp-prefix  = "/"
+prop-prefix  = "@"
+param-prefix = ";"
+
+comp-name   = text
+prop-name   = text
+param-name  = text
+
+operator-equal = "="
+operator-not-equal = "!="
+operator-not-present = "!"
+operator-equality = operator-equal / operator-not-equal
+
+vpath = path-absolute / path-relative
+  ; generic vPath refers to any component, property or parameter
+
+path-absolute = root-prefix *( comp-segment ) (prop-path)
+  ; a path relative to the root of the vObject
+
+path-relative = *( comp-segment ) (prop-path) / prop-path
+  ; a path relative to the position of the "current" component
+  ; (empty comp-segment refers to the current component)
+
+prop-path = 1*( prop-segment ) ( *( param-segment ) )
+
+comp-segment = comp-prefix comp-name *( prop-prefix prop-match )
+  ; a path segment with optional match criteria to select a specific
+  ; component with the given name (or object class)
+
+prop-match = prop-presence-match / prop-name prop-value-match
+
+prop-presence-match = [ operator-not-present ] prop-name
+  ; matches if the property with the given name is present
+  ; (or absent with "!") in the selected component
+
+prop-value-match = operator-equality value-escaped
+  ; matches if a component has a property with the given name
+  ; and a matching value (using the given operator)
+
+
+prop-segment = prop-prefix prop-name (prop-value-match)
+                 *( param-prefix param-match )
+
+param-match = param-presence-match / param-name param-value-match
+  ; matches a specific property parameter
+
+param-presence-match = [ operator-not-present ] param-name
+  ; matches if a specific property parameter is present
+  ; (or absent ("!"))
+
+param-value-match = operator-equality value-escaped
+  ; matches a specific property parameter and its value
+
+
+param-segment = param-prefix param-name
+
+
+value-escaped = *( unreserved / pct-encoded )
+  ; the escaped value containing only unreserved or percent-encoded
+  ; chars
+
+pct-encoded = "%" HEXDIG HEXDIG
+  ; taken from RFC 3986
+
+unreserved  = ALPHA / DIGIT / "-" / "." / "_" / "~"
+  ; taken from RFC 3986
+</artwork></figure>
+</section>
+
+<section anchor="fragment-identifier" title="Fragment Identifier">
+<t>TODO: below lifted from RFC 2854, reword this.
+</t>
+<t>The URI specification <xref target="RFC3986"/> specifies that a fragment identifier
+(part of a URI after a &quot;#&quot;) is a property of the data resulting from a
+retrieval action, and that the format and interpretation of fragment
+identifiers is dependent on the media type of the retrieval result.
+</t>
+<t>For documents of the &quot;text/vcard&quot; and &quot;text/calendar&quot; media types, the
+fragment specifies the desired vPath of the document.
+</t>
+
+<section anchor="character-set-1" title="Character Set">
+<t>TODO. Fragments are in US-ASCII charset. UTF-8 content (such as
+    for matching) should be encoded in the method of <xref target="RFC3986"/>)
+</t>
+</section>
+</section>
+
+<section anchor="security-considerations" title="Security Considerations">
+<t>
+<list style="symbols">
+<t>Security considerations around vObject formats in the following
+documents MUST be adhered to:
+<list style="symbols">
+<t>vCard: <xref target="RFC6350"/></t>
+<t>iCalendar: <xref target="RFC5545"/>, <xref target="RFC5789"/>, <xref target="RFC4791"/></t>
+</list></t>
+<t>A vPath may point to invalid addresses which could lead to confusion,
+depending on the handling of the client application.</t>
+<t>Seeing vPath as fragment identifier MAY confuse people such as
+<spanx style="verb">https://example.com/vcard#//VCARD@TEL</spanx> as it is different from the HTML
+fragment that people assume. People may get exploited through such
+misunderstanding in a similar way to spoofing and phishing.</t>
+<t>Software that implement vPath fragment identifiers and those that do
+not, differ in behavior. The fact that these two types of software
+present differently given the same vPath fragment MAY cause confusion
+between users.</t>
+<t>Implementers and users of vObject fragment identifiers SHOULD
+take into account of security considerations provided in
+Section 7 of <xref target="RFC3986"/> and Section 8 of <xref target="RFC3987"/>.</t>
+</list>
+</t>
+<t>
+<list style="symbols">
+<t>Please note that fragment identifiers are only used after the URI resource
+is retrieved, not when resolving the URI for retrieving the resource.</t>
+</list>
+</t>
+</section>
+
+<section anchor="iana-considerations" title="IANA Considerations">
+<t>Extension vPath specifications produced as Standards Track RFCs MUST
+not modify vPath functionality defined in this document, but are allowed
+to carry additional extensions to vPath.
+</t>
+</section>
+
+<section anchor="examples" title="Examples">
+
+<section anchor="matchers-todo" title="MATCHERS TODO">
+<t>Value operators (property value, parameter value)
+</t>
+<t>
+<list style="symbols">
+<t>equal <spanx style="verb">[&lt;name&gt;] = &lt;value&gt;</spanx> or <spanx style="verb">&lt;name&gt;:equal(&lt;value&gt;)</spanx></t>
+<t>not equal <spanx style="verb">[&lt;name&gt;] != &lt;value&gt;</spanx> or <spanx style="verb">&lt;name&gt;:not-equal(&lt;value&gt;)</spanx></t>
+<t><spanx style="verb">:starts-with(string)</spanx></t>
+<t><spanx style="verb">:ends-with(string)</spanx></t>
+<t><spanx style="verb">:contains(string)</spanx></t>
+<t><spanx style="verb">:regex(regular-expression)</spanx> (as defined in RFC 3986 and IEEE POSIX Extended Regular Expression (POSIX ERE))</t>
+</list>
+</t>
+</section>
+
+<section anchor="property-idetnfieirs" title="PROPERTY IDETNFIEIRS">
+<t>
+<list style="symbols">
+<t><spanx style="verb">:field(fieldset-index)</spanx> (0..n and -n..-1)</t>
+<t><spanx style="verb">:field(fieldset-index)</spanx></t>
+</list>
+</t>
+</section>
+
+<section anchor="matching-conditions" title="MATCHING CONDITIONS">
+<t>Matching conditions operators (only conditions), should follow AND and
+OR precedence:
+</t>
+<t>
+<list style="symbols">
+<t>and <spanx style="verb">&lt;cond&gt; &amp; &lt;cond&gt; &amp; ...</spanx> or <spanx style="verb">and(&lt;cond&gt;, &lt;cond&gt;, ...)</spanx></t>
+<t>or <spanx style="verb">&lt;cond&gt; | &lt;cond&gt; | ...</spanx> or <spanx style="verb">or(&lt;cond&gt;, &lt;cond&gt;, ...)</spanx></t>
+</list>
+</t>
+<t>Segment conditions (property name, component name, parameter name)
+</t>
+<t>
+<list style="symbols">
+<t>not exist <spanx style="verb">! &lt;name&gt;</spanx> or <spanx style="verb">not-exist(&lt;name&gt;)</spanx></t>
+<t>exist <spanx style="verb">&lt;name&gt;</spanx> or <spanx style="verb">exists(&lt;name&gt;)</spanx></t>
+</list>
+</t>
+<t>List conditions (list like <spanx style="verb">CATEGORIES</spanx>)
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">:any(&lt;cond&gt;)</spanx> Any element matches <spanx style="verb">&lt;cond&gt;</spanx></t>
+<t><spanx style="verb">:all(&lt;cond&gt;)</spanx> All elements matches <spanx style="verb">&lt;cond&gt;</spanx>, <spanx style="verb">(@CATEGORIES:any(="football", ="soccer"))</spanx></t>
+<t><spanx style="verb">:count(&lt;num&gt;)</spanx> has <spanx style="verb">&lt;num&gt;</spanx> elements.</t>
+<t><spanx style="verb">:one(&lt;num&gt;)</spanx> has <spanx style="verb">ONE</spanx> elements.</t>
+<t><spanx style="verb">:none(&lt;num&gt;)</spanx> has <spanx style="verb">NONE</spanx> elements.</t>
+</list>
+</t>
+
+<figure align="center"><artwork align="center">
+# specify the 3rd card with a tel and point to tel
+/VCARD(@tel):first(1):offset(2)@tel
+/VCARD(@n:field(0)='Tam' | ;type='home')
+/VCARD(@n:field(0)='Tam' | ;type!='home')
+/VCARD(!@tel)
+/VCARD(@n:field(0)='Tam' | ;type='home')
+/VCARD(@n:field(0)='Tam' | ;type:starts-with('h'))
+/VCARD(@n:field(0):equals('Tam')
+/VCARD(@n:field(0):starts-with('Tam')
+/VCARD(@n:field(0):ends-with('Tam')
+/VCARD(@n:field(0):contains('Tam')
+
+# has to escape regular expressions like *
+/VCARD(@n:field(0):matches(/Ta[nm]/)
+
+# Targets N Honorary Suffix
+/VCARD(@n:field(-1):contains('Jr.')
+
+
+</artwork></figure>
+</section>
+
+<section anchor="referring-to-components" title="Referring To Components">
+<t>Path contains exactly one or more component segments:
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCARD</spanx></t>
+</list>
+</t>
+<t>Targets the &quot;VCARD&quot; component in the vCard object <xref target="RFC6350"/>.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT</spanx></t>
+</list>
+</t>
+<t>Targets all &quot;VEVENT&quot; components in the &quot;VCALENDAR&quot; component in the
+  iCalendar object.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT(@uid='1234')</spanx></t>
+</list>
+</t>
+<t>Targets any &quot;VEVENT&quot; components that have a &quot;UID&quot; property value
+  exactly equal to &quot;1234&quot;, in the &quot;VCALENDAR&quot; component in the iCalendar
+  object.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT(@uid='1234%2F4567' &amp; !@recurrence-id)</spanx></t>
+</list>
+</t>
+<t>Targets any &quot;VEVENT&quot; components that have a &quot;UID&quot; property value
+  exactly equal to &quot;1234/4567&quot; and do not have a &quot;RECURRENCE-ID&quot;
+  property, in the &quot;VCALENDAR&quot; component in the iCalendar object.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT(@uid='1234' &amp; @recurrence-id='20160902T223000Z')</spanx></t>
+</list>
+</t>
+<t>Targets any &quot;VEVENT&quot; components that have a &quot;UID&quot; property value exactly
+  equal to &quot;1234&quot; and have a &quot;RECURRENCE-ID&quot; property whose UTC value is
+  &quot;20160902T223000Z&quot;, in the &quot;VCALENDAR&quot; component in the iCalendar
+  object.
+</t>
+</section>
+
+<section anchor="referring-to-properties" title="Referring To Properties">
+<t>[TODO, lifted from VPATCH]
+</t>
+<t>Path contains exactly zero or more component segments, and one property segment.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT@status</spanx></t>
+</list>
+</t>
+<t>Targets all &quot;STATUS&quot; properties in all &quot;VEVENT&quot; components in the
+  &quot;VCALENDAR&quot; component in the iCalendar object.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT(@uid='1234')@status</spanx></t>
+</list>
+</t>
+<t>Targets all &quot;STATUS&quot; properties in any &quot;VEVENT&quot; components that have a
+  &quot;UID&quot; property value exactly equal to &quot;1234&quot;, in the &quot;VCALENDAR&quot;
+  component in the iCalendar object.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT@ATTENDEE(='mailto:cyrus@example.com')</spanx>
+or <spanx style="verb">/VCALENDAR/VEVENT(@attendee='mailto:cyrus@example.com')@ATTENDEE</spanx></t>
+</list>
+</t>
+<t>Targets any &quot;ATTENDEE&quot; properties that have the value
+  &quot;mailto:cyrus@example.com&quot; in all  &quot;VEVENT&quot; components, in the
+  &quot;VCALENDAR&quot; component in the iCalendar object.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT@ATTENDEE(!='mailto:cyrus@example.com')</spanx></t>
+</list>
+</t>
+<t>Targets any &quot;ATTENDEE&quot; properties that do not have the value
+  &quot;mailto:cyrus@example.com&quot; in all &quot;VEVENT&quot; components, in the
+  &quot;VCALENDAR&quot; component in the iCalendar object.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT@ATTENDEE(;MEMBER)</spanx></t>
+</list>
+</t>
+<t>Targets any &quot;ATTENDEE&quot; properties that have a &quot;MEMBER&quot; property
+  parameter present in all &quot;VEVENT&quot; components, in the &quot;VCALENDAR&quot;
+  component in the iCalendar object
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT@ATTENDEE(;cn='Cyrus Daboo')</spanx></t>
+</list>
+</t>
+<t>Targets any &quot;ATTENDEE&quot; properties that have a &quot;CN&quot; property parameter
+  with the value &quot;Cyrus Daboo&quot; present in all &quot;VEVENT&quot; components, in
+  the &quot;VCALENDAR&quot; component in the iCalendar object.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT@ATTENDEE(;cn!='Cyrus Daboo')</spanx></t>
+</list>
+</t>
+<t>Targets any &quot;ATTENDEE&quot; properties that have a &quot;CN&quot; property parameter
+  not equal to the value &quot;Cyrus Daboo&quot;, or do not have a &quot;CN&quot; property
+  parameter present in all  &quot;VEVENT&quot; components, in the &quot;VCALENDAR&quot;
+  component in the iCalendar object.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">@ATTENDEE(='mailto:cyrus@example.com')</spanx></t>
+</list>
+</t>
+<t>A relative path that targets any &quot;ATTENDEE&quot; properties that have the
+  value &quot;mailto:cyrus@example.com&quot; in all components the path is
+  relative to.
+</t>
+</section>
+
+<section anchor="referring-to-property-parameters" title="Referring To Property Parameters">
+<t>[TODO, lifted from VPATCH]
+</t>
+<t>Path contains exactly zero or more component segments, one property
+segment, and one parameter segment.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT@ATTENDEE;PARTSTAT</spanx></t>
+</list>
+</t>
+<t>Targets the &quot;PARTSTAT&quot; parameter on all &quot;ATTENDEE&quot; properties in all
+  &quot;VEVENT&quot; components in the &quot;VCALENDAR&quot; component in the iCalendar
+  object.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT@ATTENDEE(='mailto:cyrus@example.com');PARTSTAT</spanx></t>
+</list>
+</t>
+<t>Targets the &quot;PARTSTAT&quot; parameter on any &quot;ATTENDEE&quot; properties that
+  have the value &quot;mailto:cyrus@example.com&quot; in all &quot;VEVENT&quot; components,
+  in the &quot;VCALENDAR&quot; component in the iCalendar object.
+</t>
+</section>
+
+<section anchor="referring-to-property-values" title="Referring To Property Values">
+<t>[TODO, lifted from VPATCH]
+</t>
+<t>Path contains exactly zero or more component segments, one property
+segment, and one value segment.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT@EXDATE(='20160905')</spanx></t>
+</list>
+</t>
+<t>Targets all &quot;EXDATE&quot; property values with the value &quot;20160905&quot; in all
+  &quot;VEVENT&quot; components in the &quot;VCALENDAR&quot; component in the iCalendar
+  object.
+</t>
+</section>
+
+<section anchor="referring-to-property-parameter-values" title="Referring To Property Parameter Values">
+<t>[TODO, lifted from VPATCH]
+</t>
+<t>Path contains exactly zero or more component segments, one property
+segment, one parameter segment, and one value segment.
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">/VCALENDAR/VEVENT@ATTENDEE;MEMBER(='mailto:group@example.com')</spanx></t>
+</list>
+</t>
+<t>Targets all &quot;MEMBER&quot; property parameter values with the value
+  &quot;mailto:group@example.com&quot; in all &quot;ATTENDEE&quot; properties in all
+  &quot;VEVENT&quot; components in the &quot;VCALENDAR&quot; component in the iCalendar
+  object.
+</t>
+</section>
+
+<section anchor="fragment-usage-examples-todo-move-to-vobject-normalization" title="Fragment Usage Examples TODO: MOVE TO VOBJECT NORMALIZATION">
+<t>Plural results:
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">https://example.com/cyrus.vcf#//VCARD@TEL</spanx></t>
+<t><spanx style="verb">https://example.com/cyrus/vcard#//VCARD@TEL</spanx></t>
+<t><spanx style="verb">https://example.com/cyrus/vcard#//VCARD/PROFILE(1)@TEL;TYPE</spanx></t>
+</list>
+</t>
+<t>Singular results:
+</t>
+<t>
+<list style="symbols">
+<t><spanx style="verb">https://example.com/cyrus.vcf#//VCARD&amp;TEL(1)</spanx>
+<list style="symbols">
+<t>=&gt; <spanx style="verb">"TEL;TYPE=home,work:+123456789"</spanx></t>
+</list></t>
+<t><spanx style="verb">https://example.com/cyrus/vcard#//VCARD/PROFILE(1)@TEL(1);TYPE</spanx>
+<list style="symbols">
+<t>=&gt; <spanx style="verb">"home,work"</spanx></t>
+</list></t>
+</list>
+</t>
+</section>
+</section>
+
+</middle>
+<back>
+<references title="Normative References">
+<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml"?>
+<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3986.xml"?>
+<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3987.xml"?>
+<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4791.xml"?>
+<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5234.xml"?>
+<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5261.xml"?>
+<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5545.xml"?>
+<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.5789.xml"?>
+<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.6350.xml"?>
+<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.7953.xml"?>
+</references>
+<references title="Informative References">
+<reference anchor='CALCONNECT-CALENDAR' target='http://calconnect.org/about/technical-committees/calendar-technical-committee'>
+  <front>
+    <title>CalConnect Calendar Technical Committee</title>
+    <author>
+      <organization>The Calendaring and Scheduling Consortium</organization>
+      <address>
+        <postal>
+         <street>4390 Chaffin Lane</street>
+         <city>McKinleyville</city>
+         <region>CA</region>
+         <code>95519-8028</code>
+         <country>United States of America</country>
+        </postal>
+        <email>contact@calconnect.org</email>
+        <uri>https://www.calconnect.org</uri>
+      </address>
+    </author>
+    <date month='May' year='2017'/>
+  </front>
+</reference>
+<reference anchor='CALCONNECT-VCARD' target='http://calconnect.org/about/technical-committees/vcard-technical-committee'>
+  <front>
+    <title>CalConnect VCARD Technical Committee</title>
+    <author>
+      <organization>The Calendaring and Scheduling Consortium</organization>
+      <address>
+        <postal>
+         <street>4390 Chaffin Lane</street>
+         <city>McKinleyville</city>
+         <region>CA</region>
+         <code>95519-8028</code>
+         <country>United States of America</country>
+        </postal>
+        <email>contact@calconnect.org</email>
+        <uri>https://www.calconnect.org</uri>
+      </address>
+    </author>
+    <date month='May' year='2017'/>
+  </front>
+</reference>
+<?rfc include="http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3629.xml"?>
+<reference anchor='VPATCH'>
+  <front>
+    <title>The iCalendar VPATCH Component (draft)</title>
+    <author initials="C." surname="Daboo" fullname="Cyrus Daboo">
+      <organization>Apple Inc.</organization>
+    </author>
+    <author initials="K." surname="Murchison" fullname="Ken Murchison">
+      <organization>Carnegie Mellon University</organization>
+    </author>
+    <date day='28' month='October' year='2016'/>
+  </front>
+</reference>
+</references>
+
+<section anchor="acknowledgements" title="Acknowledgements">
+<t>The authors wish to thank their families and the following parties who
+helped this materialize and for their support of a better world:
+</t>
+<t>
+<list style="symbols">
+<t>members and the Board of Directors of CalConnect</t>
+</list>
+</t>
+<t>This specification was developed as joint work between TC Calendar
+<xref target="CALCONNECT-CALENDAR"/> and TC VCARD <xref target="CALCONNECT-VCARD"/> committees at
+CalConnect, the Calendaring and Scheduling Consortium.
+</t>
+</section>
+
+</back>
+</rfc>
