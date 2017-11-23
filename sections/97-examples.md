@@ -41,10 +41,16 @@ List conditions (list like `CATEGORIES`)
 
 
 ```
-# specify the 3rd card with a tel and point to tel
+# specify the 3rd card with a tel and point to tel property
 /VCARD(@tel):first(1):offset(2)@tel
 /VCARD(@n:field(0)='Tam' | ;type='home')
 /VCARD(@n:field(0)='Tam' | ;type!='home')
+/VCARD(@n:field(0)=‘Tam’)@adr(;type='home’)
+/VCARD(@n:field(0)='Tam' | ;type!='home')
+
+/VCARD(+@tel)
+/VCARD(:has(@tel))
+
 /VCARD(!@tel)
 /VCARD(@n:field(0)='Tam' | ;type='home')
 /VCARD(@n:field(0)='Tam' | ;type:starts-with('h'))
@@ -52,12 +58,24 @@ List conditions (list like `CATEGORIES`)
 /VCARD(@n:field(0):starts-with('Tam')
 /VCARD(@n:field(0):ends-with('Tam')
 /VCARD(@n:field(0):contains('Tam')
+/VCARD(:has-no(@tel))
 
 # has to escape regular expressions like *
 /VCARD(@n:field(0):matches(/Ta[nm]/)
+/VCARD(@n:field(0)='Tam' | ;type='home')
+/VCARD(@n:field(0)='Tam' | ;type:starts-with('h'))
+/VCARD(@n:field(0):equals('Tam')
+/VCARD(@n:field(0):starts-with('Tam')
+/VCARD(@n:field(0):ends-with('Tam')
+/VCARD(@n:field(0):contains('Tam')
 
-# Targets N Honorary Suffix
-/VCARD(@n:field(-1):contains('Jr.')
+/VCARD(@n:index(0):matches(/Ta[nm]/)
+
+# has to escape regular expressions like *
+/VCARD(@n:field(0):matches(/Ta*[nm]/) is written as
+/VCARD(@n:field(0):matches(/Ta&#x2a[nm]/)
+
+/VCARD(@n:field(0):index(-1):contains('Tam')
 
 
 ```
@@ -66,28 +84,28 @@ List conditions (list like `CATEGORIES`)
 
 Path contains exactly one or more component segments:
 
-* `/VCARD`
+* `//VCARD`
 
   Targets the "VCARD" component in the vCard object [@!RFC6350].
 
-* `/VCALENDAR/VEVENT`
+* `//VCALENDAR/VEVENT`
 
   Targets all "VEVENT" components in the "VCALENDAR" component in the
   iCalendar object.
 
-* `/VCALENDAR/VEVENT(@uid='1234')`
+* `//VCALENDAR/VEVENT(@uid='1234')`
 
   Targets any "VEVENT" components that have a "UID" property value
   exactly equal to "1234", in the "VCALENDAR" component in the iCalendar
   object.
 
-* `/VCALENDAR/VEVENT(@uid='1234%2F4567' & !@recurrence-id)`
+* `//VCALENDAR/VEVENT(@uid='1234%2F4567' & !@recurrence-id)`
 
   Targets any "VEVENT" components that have a "UID" property value
   exactly equal to "1234/4567" and do not have a "RECURRENCE-ID"
   property, in the "VCALENDAR" component in the iCalendar object.
 
-* `/VCALENDAR/VEVENT(@uid='1234' & @recurrence-id='20160902T223000Z')`
+* `//VCALENDAR/VEVENT(@uid='1234' & @recurrence-id='20160902T223000Z')`
 
   Targets any "VEVENT" components that have a "UID" property value exactly
   equal to "1234" and have a "RECURRENCE-ID" property whose UTC value is
@@ -101,43 +119,43 @@ Path contains exactly one or more component segments:
 
 Path contains exactly zero or more component segments, and one property segment.
 
-* `/VCALENDAR/VEVENT@status`
+* `//VCALENDAR/VEVENT@status`
 
   Targets all "STATUS" properties in all "VEVENT" components in the
   "VCALENDAR" component in the iCalendar object.
 
-* `/VCALENDAR/VEVENT(@uid='1234')@status`
+* `//VCALENDAR/VEVENT(@uid='1234')@status`
 
   Targets all "STATUS" properties in any "VEVENT" components that have a
   "UID" property value exactly equal to "1234", in the "VCALENDAR"
   component in the iCalendar object.
 
-* `/VCALENDAR/VEVENT@ATTENDEE(='mailto:cyrus@example.com')`
+* `//VCALENDAR/VEVENT@ATTENDEE(='mailto:cyrus@example.com')`
   or `/VCALENDAR/VEVENT(@attendee='mailto:cyrus@example.com')@ATTENDEE`
 
   Targets any "ATTENDEE" properties that have the value
   "mailto:cyrus@example.com" in all  "VEVENT" components, in the
   "VCALENDAR" component in the iCalendar object.
 
-* `/VCALENDAR/VEVENT@ATTENDEE(!='mailto:cyrus@example.com')`
+* `//VCALENDAR/VEVENT@ATTENDEE(!='mailto:cyrus@example.com')`
 
   Targets any "ATTENDEE" properties that do not have the value
   "mailto:cyrus@example.com" in all "VEVENT" components, in the
   "VCALENDAR" component in the iCalendar object.
 
-* `/VCALENDAR/VEVENT@ATTENDEE(;MEMBER)`
+* `//VCALENDAR/VEVENT@ATTENDEE(;MEMBER)`
 
   Targets any "ATTENDEE" properties that have a "MEMBER" property
   parameter present in all "VEVENT" components, in the "VCALENDAR"
   component in the iCalendar object
 
-* `/VCALENDAR/VEVENT@ATTENDEE(;cn='Cyrus Daboo')`
+* `//VCALENDAR/VEVENT@ATTENDEE(;cn='Cyrus Daboo')`
 
   Targets any "ATTENDEE" properties that have a "CN" property parameter
   with the value "Cyrus Daboo" present in all "VEVENT" components, in
   the "VCALENDAR" component in the iCalendar object.
 
-* `/VCALENDAR/VEVENT@ATTENDEE(;cn!='Cyrus Daboo')`
+* `//VCALENDAR/VEVENT@ATTENDEE(;cn!='Cyrus Daboo')`
 
   Targets any "ATTENDEE" properties that have a "CN" property parameter
   not equal to the value "Cyrus Daboo", or do not have a "CN" property
@@ -158,13 +176,13 @@ Path contains exactly zero or more component segments, and one property segment.
 Path contains exactly zero or more component segments, one property
 segment, and one parameter segment.
 
-* `/VCALENDAR/VEVENT@ATTENDEE;PARTSTAT`
+* `//VCALENDAR/VEVENT@ATTENDEE;PARTSTAT`
 
   Targets the "PARTSTAT" parameter on all "ATTENDEE" properties in all
   "VEVENT" components in the "VCALENDAR" component in the iCalendar
   object.
 
-* `/VCALENDAR/VEVENT@ATTENDEE(='mailto:cyrus@example.com');PARTSTAT`
+* `//VCALENDAR/VEVENT@ATTENDEE(='mailto:cyrus@example.com');PARTSTAT`
 
   Targets the "PARTSTAT" parameter on any "ATTENDEE" properties that
   have the value "mailto:cyrus@example.com" in all "VEVENT" components,
@@ -179,7 +197,7 @@ segment, and one parameter segment.
 Path contains exactly zero or more component segments, one property
 segment, and one value segment.
 
-* `/VCALENDAR/VEVENT@EXDATE(='20160905')`
+* `//VCALENDAR/VEVENT@EXDATE(='20160905')`
 
   Targets all "EXDATE" property values with the value "20160905" in all
   "VEVENT" components in the "VCALENDAR" component in the iCalendar
@@ -193,7 +211,7 @@ segment, and one value segment.
 Path contains exactly zero or more component segments, one property
 segment, one parameter segment, and one value segment.
 
-* `/VCALENDAR/VEVENT@ATTENDEE;MEMBER(='mailto:group@example.com')`
+* `//VCALENDAR/VEVENT@ATTENDEE;MEMBER(='mailto:group@example.com')`
 
   Targets all "MEMBER" property parameter values with the value
   "mailto:group@example.com" in all "ATTENDEE" properties in all
@@ -215,3 +233,5 @@ Singular results:
   * => `"TEL;TYPE=home,work:+123456789"`
 * `https://example.com/cyrus/vcard#//VCARD/PROFILE(1)@TEL(1);TYPE`
   * => `"home,work"`
+* `https://example.com/cyrus/vcard#//VCARD/PROFILE(1)@TEL(1)=`
+  * => `"+123456789"`
