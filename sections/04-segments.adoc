@@ -1,4 +1,4 @@
-# Path Segments
+= Path Segments
 
 The vObject Path is composed of a list of "segments" that matches an
 vObject element in the vObject object model hierarchy.
@@ -23,12 +23,12 @@ value segment (which always has a "=" prefix).  A parameter segment
 can be followed by a value segment (which always has a "=" prefix).
 
 
-## Encoding
+== Encoding
 
 TODO.
 
 
-## Character Set
+== Character Set
 
 TODO. Both vCard [@RFC6350] and iCalendar [@RFC5545] use UTF-8
 [@RFC3629].

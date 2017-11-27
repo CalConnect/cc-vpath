@@ -1,0 +1,23 @@
+[abstract]
+
+This document defines a mechanism to refer to elements inside a
+vObject (TODO: reference) called "vPath". vPath applies to the following
+formats:
+
+* vCard version 4.0 RFC6350: the VCARD component
+* Internet Calendaring and Scheduling Core Object Specification
+  (iCalendar) RFC5545, the VCALENDAR, VEVENT, VJOURNAL, VFREEBUSY,
+  VTIMEZONE, VALARM, VTODO, STANDARD, DAYLIGHT components
+* Calendar Availability Extensions RFC7953: the VAVAILABILITY,
+  AVAILABLE components
+* vObject Patching (TODO: I-D.daboo-icalendar-vpatch): the VPATCH
+  component
+
+Moreover, vPath is used as a URI Fragment Identifier RFC3986 scheme
+for the following vObject MIME entities:
+
+* text/vcard RFC6350
+* text/calendar RFC5545
+
+// No references allowed in the Abstract
+

@@ -1,4 +1,4 @@
-# ABNF Representation
+= ABNF Representation
 
 Syntax for a vObject path is defined by the following ABNF notation.
 

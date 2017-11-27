@@ -1,0 +1,85 @@
+= vPath and URI Fragment Identifiers for vObjects
+:doctype: internet-draft
+:name: draft-calconnect-vpath-00
+:abbrev: vPath Specification
+:status: standard
+:ipr: trust200902
+:submissionType: IETF
+:area: internet
+:intended-series: full-standard
+:workgroup: Calendaring Extensions
+:updates: 5545, 6321, 6350, 6351
+:revdate: 2017-11-27T00:00:00Z
+:forename_initials: C.
+:lastname: Daboo
+:fullname: Cyrus Daboo
+:organization: Apple Inc.
+:email: cyrus@daboo.name
+:uri: https://www.apple.com
+:street: 1 Infinite Loop
+:city: Cupertino
+:code: 95014
+:region: CA
+:country: USA
+:forename_initials_2: K.
+:lastname_2: Murchison
+:fullname_2: Kenneth Murchison
+:organization_2: Carnegie Mellon University
+:email_2: murch@andrew.cmu.edu
+:uri_2: https://www.cmu.edu
+:street_2: 5000 Forbes Avenue
+:city_2: Pittsburgh
+:code_2: 15213
+:region_2: PA
+:country_2: USA
+:forename_initials_3: M.
+:lastname_3: Gajda
+:fullname_3: Marten Gajda
+:organization_3: dmfs GmbH
+:email_3: marten@dmfs.org
+:uri_3: https://www.dmfs.org
+:street_3: Schandauer Straße 34
+:city_3: Dresden
+:code_3: 01309
+:country_3: Germany
+:forename_initials_4: R. H.
+:lastname_4: Tse
+:fullname_4: Ronald Henry Tse
+:organization_4: Ribose
+:email_4: ronald.tse@ribose.com
+:uri_4: https://www.ribose.com
+:street_4: Suite 1111, 1 Pedder Street
+:city_4: Central
+:region_4: Hong Kong
+:country_4: Hong Kong
+:forename_initials_5: P.
+:lastname_5: Tam
+:fullname_5: Peter Kwan Yu Tam
+:organization_5: Ribose
+:email_5: peter.tam@ribose.com
+:uri_5: https://www.ribose.com
+:street_5: Suite 1111, 1 Pedder Street
+:city_5: Central
+:region_5: Hong Kong
+:country_5: Hong Kong
+//:bibliography-database: my_database.bib
+
+include::sections/00-abstract.adoc[leveloffset=+1]
+
+include::sections/01-intro.adoc[leveloffset=+1]
+include::sections/02-conventions.adoc[leveloffset=+1]
+include::sections/03-path.adoc[leveloffset=+1]
+include::sections/04-segments.adoc[leveloffset=+1]
+include::sections/05-types.adoc[leveloffset=+1]
+include::sections/06-matching.adoc[leveloffset=+1]
+include::sections/07-grammar.adoc[leveloffset=+1]
+include::sections/08-fragments.adoc[leveloffset=+1]
+include::sections/09-security.adoc[leveloffset=+1]
+include::sections/10-iana.adoc[leveloffset=+1]
+
+// must give references before appendix!
+
+include::sections/98-references.adoc[leveloffset=+1]
+include::sections/97-examples.adoc[leveloffset=+1]
+include::sections/99-acknowledgements.adoc[leveloffset=+1]
+

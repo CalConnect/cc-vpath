@@ -1,6 +1,6 @@
-# Targeting and Matching
+= Targeting and Matching
 
-## Components
+== Components
 
 To target a second-level component, a component segment is appended to
 the path.
@@ -19,7 +19,7 @@ in iCalendar Path, the "RID" property matcher can be used to match the
 value such as "20160902T223000Z".
 
 
-## Properties
+== Properties
 
 To target a property inside of a component, a property segment is added
 to the path.
@@ -32,7 +32,7 @@ this allows targeting of properties:
 * by property parameter value (matching or not matching a specific value)
 
 
-## Property Parameters
+== Property Parameters
 
 To target a property parameter, a parameter segment is added to the
 property segment at the end of the path.
@@ -44,7 +44,7 @@ To target a single value in a multi-valued property parameter, a value
 segment is added to the parameter segment at the end of the path.
 
 
-## Match Syntax
+== Match Syntax
 
 Values in match items **MUST** use URL-style percent ("%") encoding of
 the characters "/", "#", ";", "=", and "]".  This allows a path to be

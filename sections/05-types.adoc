@@ -40,6 +40,6 @@ component defined by the context.
 Relative paths are unable to refer to an element that is outside of the
 current component. The only way to do so is through an absolute path.
 This restriction is for simplicity and to address security concerns,
-while conforming in expectation to the usage of XPath [@!RFC5261].
+while conforming in expectation to the usage of XPath <<RFC5261>>.
 
 
