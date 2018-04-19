@@ -1,5 +1,5 @@
 
-[#introduction]
+[[introduction]]
 = Introduction
 
 It is often necessary to refer to a particular element within a

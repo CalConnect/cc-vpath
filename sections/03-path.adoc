@@ -1,4 +1,4 @@
-[#profile-property-path]
+[[profile-property-path]]
 = vObject Path
 
 TODO: Description on why we need the path.
